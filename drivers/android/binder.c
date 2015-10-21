@@ -3539,8 +3539,15 @@ out_err:
 			spin_unlock_irqrestore(&target_wait->lock, flag);
 	}
 #else
-	if (target_wait)
-		wake_up_interruptible(target_wait);
+	if (target_wait) {
+		if (reply || !(t->flags & TF_ONE_WAY)) {
+			preempt_disable();
+			wake_up_interruptible_sync(target_wait);
+			sched_preempt_enable_no_resched();
+		} else {
+			wake_up_interruptible(target_wait);
+		}
+	}
 #endif
 
 #ifdef BINDER_MONITOR
