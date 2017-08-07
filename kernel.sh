@@ -83,11 +83,11 @@ fi
 echo -e "$yellow***********************************************"
 echo "          Initialising DEFCONFIG        "
 echo -e "***********************************************$nocol"
-make x3_defconfig 
+make x3_defconfig
 echo -e "$yellow***********************************************"
 echo "          Cooking INFERNUS         "
 echo -e "***********************************************$nocol"
-time make -j8
+time make -j14
 cp -vr $KERN_IMG $REPACK_DIR/Image.gz-dtb
 
 
