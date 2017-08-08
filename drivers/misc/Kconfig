@@ -4,6 +4,11 @@
 
 menu "Misc devices"
 
+config THUNDERQUAKE_ENGINE_GPL
+   tristate "Vibrator Intensity Controller for MTK Vibrator"
+   default y
+   help
+   Vibrator Intensity Controller for MTK Vibrator v1.0
 
 config ANDROID_PMEM
         bool "Android pmem allocator"
