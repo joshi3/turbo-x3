@@ -83,7 +83,7 @@ fi
 echo -e "$yellow***********************************************"
 echo "          Initialising DEFCONFIG        "
 echo -e "***********************************************$nocol"
-make x500_defconfig
+make Turbo-X3_defconfig
 echo -e "$yellow***********************************************"
 echo "          Cooking INFERNUS         "
 echo -e "***********************************************$nocol"

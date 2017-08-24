@@ -1,5 +1,6 @@
 #$(call all-subdir-src-or-makefile)
 include $(srctree)/drivers/misc/mediatek/Makefile.custom
+obj-$(CONFIG_MTK_RRC)	+= rrc/
 
 ifneq ($(PROJECT_X3_SUPPORT),yes)
 obj-y	+= hallsensor/
