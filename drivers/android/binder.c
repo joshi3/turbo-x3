@@ -6038,7 +6038,6 @@ static int binder_proc_show(struct seq_file *m, void *unused)
 		}
 	}
 #endif
->>>>>>> 14db318... binder: Deal with contexts in debugfs
 	if (do_lock)
 		binder_unlock(__func__);
 	return 0;
