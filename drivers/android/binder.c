@@ -2595,9 +2595,6 @@ static void binder_transaction_buffer_release(struct binder_proc *proc,
 			struct flat_binder_object *fp;
 			struct binder_ref *ref;
 
-			ref = binder_get_ref(proc, fp->handle,
-					     fp->type == BINDER_TYPE_HANDLE);
-
 			fp = to_flat_binder_object(hdr);
 			ref = binder_get_ref(proc, fp->handle,
 					     hdr->type == BINDER_TYPE_HANDLE);
@@ -4279,7 +4276,7 @@ retry:
 				if (put_user_preempt_disabled(cmd, (uint32_t __user *)ptr))
 					return -EFAULT;
 				ptr += sizeof(uint32_t);
-				if (put_user_preempt_disabled
+				if (put_user_preempt_disabled(node->ptr,
 					     (binder_uintptr_t __user *)ptr))
 					return -EFAULT;
 				ptr += sizeof(binder_uintptr_t);
@@ -6027,26 +6024,14 @@ static int binder_proc_show(struct seq_file *m, void *unused)
 	hlist_for_each_entry(itr, &binder_procs, proc_node) {
 		if (itr->pid == pid) {
 			seq_puts(m, "binder proc state:\n");
-#ifdef MTK_BINDER_DEBUG
-        hlist_for_each_entry(tmp_proc, &binder_procs, proc_node)
-        {
-                if (proc == tmp_proc)
-                {
-                        find = true;
-                        break;
-                }
-        }
-        if (find == true)
-#endif
 			print_binder_proc(m, itr, 1);
 		}
-	}
 #ifdef MTK_BINDER_DEBUG
-	        else
-        	        pr_debug("show proc addr 0x%p exit\n", proc);
+	        else {
+			pr_debug("show proc addr 0x%p exit\n", itr);
 		}
-	}
 #endif
+	}
 	if (do_lock)
 		binder_unlock(__func__);
 	return 0;
