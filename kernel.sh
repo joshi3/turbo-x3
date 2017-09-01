@@ -85,7 +85,7 @@ echo "          Initialising DEFCONFIG        "
 echo -e "***********************************************$nocol"
 make Turbo-X3_defconfig
 echo -e "$yellow***********************************************"
-echo "          Cooking INFERNUS         "
+echo "          Cooking TURBO_X3         "
 echo -e "***********************************************$nocol"
 time make -j14
 cp -vr $KERN_IMG $REPACK_DIR/Image.gz-dtb
